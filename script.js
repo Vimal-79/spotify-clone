@@ -1,39 +1,42 @@
-const taskInput = document.getElementById("task-input");
-const taskBtn = document.getElementsByClassName("add-task");
-const taskContainer = document.querySelector("#task-container");
-const taskStatus = document.querySelector("#task-status");
-const taskStatusContainer = document.querySelector(".task-status-container");
-const taskCount = document.querySelector("#task-count");
 
-let count = 0;
 
-let taskList = [];
 
-function addingNewTask() {
-    if(taskInput.value.trim().length > 3 ){
-    const task = taskInput.value.trim();
-    taskList = { text: task , completed: false }
-    taskInput.value = '';
-    
-    randerTask();
+const title = "Installing Vs Code & How Website Work | Sigma Web Development Course - Tutorial #1"
+const min = 30;
+const sec = 20;
+const time_duration = `${min}:${sec}`;
+const channelName = "CodeWithHarry";
+const view_count = 2.7;
+const video_old = 2;
 
-    }
+function addingDetails(title , time , channelName , views , date){
 
-    else{
-        alert('invalid input \ntask must be more than 3 characters');
-        taskInput.value = '';
-        
-    }
+    let card = document.querySelector(".card_container")
+
+    let h3 = document.createElement('h3')
+    h3.innerText = title
+    card.append(h3)
+    h3.classList.add("title")
+
+    let p = document.createElement('p')
+    p.innerText = time
+    document.querySelector(".img_container").append(p)
+    p.classList.add("time")
+
+    let div = document.createElement('div')
+    card.append(div)
+    div.classList.add("second_row")
+
+    let ul = document.createElement('ul')
+    div.append(ul)
+
+    ul.insertAdjacentHTML("afterbegin" , `<li>${channelName}</li>`)
+
+    ul.insertAdjacentHTML("beforeend" , `<li>${views}K views</li>`)
+
+    ul.insertAdjacentHTML("beforeend" , `<li>${date} year ago </li>`)
 }
 
-function randerTask() {
-    let p = document.createElement("p");
-    let div = document.createElement("div");
-    p.textContent = taskList["text"];
-    taskContainer.append(div);
-    div.append(p);
-    div.classList.add("p-container");
-    p.addEventListener('click' , () => {
-        p.classList.add("completed")
-    });
-}
+
+
+addingDetails(title , time_duration , channelName , view_count , video_old) 
