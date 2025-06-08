@@ -1,59 +1,54 @@
-// Initalizing Hacking...
-// Reading your files...
-// parsword files reading...
-// Sending all parsword and personal date to sever... 
-// Cleaning up... 
-
-
-// <h2>Initailizing Hacking...</h2>
-// <h2>Reading your files...</h2>
-// <h2>Pasword files reading...</h2>
-// <h2>Sending your personal files to server...</h2>
-// <h2>Cleaning up...</h2>
-
-const addItems = async (items) => {
-    await randomDelay()
-    console.log(items)
-    let div = document.createElement('div')
-    div.innerHTML = items
-    document.body.append(div)
-}
-
-const randomDelay = () => {
+let randomDelay = async () => {
     return new Promise((resolve, reject) => {
-        timeout = 1 + 6 * Math.random();
+        let randomNumber = Math.floor(Math.random() * 6 + 1)
         setTimeout(() => {
             resolve()
-        }, timeout * 1000)
+        }, randomNumber * 1000)
     })
 }
 
-async function main() {
-
-    let time = setInterval(() => {
-        let last = document.body.getElementsByTagName("div");
-        last = last[last.length - 1]
-        if(last.innerHTML.endsWith("...")){
-            last.innerHTML = last.innerHTML.slice(0 , last.innerHTML.length-3)
-        }
-        else{
-            last.innerHTML = last.innerHTML + "."
-        }
-    } , 10)
-
-
-    let text = ["Initialized Hacking reding yout data",
-        "Reading your files",
-        "parsword files reading",
-        "Sending all parsword and personal date to sever",
-        "Cleaning up"]
-
-    for (const items of text) {
-        await addItems(items)
-    }
+let addItems = async (items) => {
     await randomDelay()
-    clearInterval(time)
-
+    let container = document.querySelector(".container")
+    let div = document.createElement('div')
+    div.innerText = items
+    container.append(div)
 }
 
-main()
+
+
+async function mainfnc() {
+
+    let time = setInterval(() => {
+        let container = document.querySelector(".container")
+        if (container.children.length > 0) {
+            let last = container.lastElementChild
+            if (last.innerHTML.endsWith("...")) {
+                last.innerHTML = last.innerHTML.slice(0, last.innerHTML.length - 3)
+            }
+            else {
+                last.innerHTML = last.innerHTML + "."
+            }
+        }
+
+    }, 100)
+
+
+    let commands = [
+        "Initalizing Hacking in your pc",
+        "Hacking initialized searching for files",
+        "Cracking Password files",
+        "Sending personal files to server",
+        "removing traces of hack",
+        "Cleaning up"
+    ]
+
+    for (items of commands) {
+        await addItems(items)
+    }
+
+    await randomDelay()
+    clearInterval(time)
+}
+
+mainfnc()

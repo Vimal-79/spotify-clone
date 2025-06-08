@@ -3,15 +3,10 @@
     padding: 0;
 }
 
-:root{
-    --primary: green;
-    --secondary: #ffffff;
-}
-
 body{
-    background-color: var(--primary);
-    color: var(--secondary);
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: 800;
+    background-color: #010101ef;
+    color: rgba(10, 177, 10, 0.781);
     font-size: 26px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
 }
