@@ -4,71 +4,14 @@
 }
 
 :root{
-    --primary: #fff;
-    --secondary: #d1cccc;
-    
+    --primary: green;
+    --secondary: #ffffff;
 }
 
-.container{
-    height: 112px;
-    width: 1120px;
-    padding: 10px 20px;
-    gap: 10px;
-    margin: 100px auto;
-    background-color:rgba(5,31,38,0.949);
-    display: flex;
-    justify-content: space-between;
-    border-radius: 12px;
-}
-
-.img_container{
-    height: 100%;
-    width: 200px;
-    position: relative;
-}
-
-img{
-    object-fit: cover;
-    width: 100%;
-    border-radius: 12px;
-}
-
-.title{
-    color: var(--primary);
-    font-family:"Roboto", "Arial", sans-serif;
-    font-size: 22px;
-}
-
-.time{
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
-    color: var(--primary);
-    background-color: rgba(95, 93, 93, 0.933);
-    font-family: "Roboto", "Arial", sans-serif;
-    font-weight: 400;
-    padding: 1.5px 5px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
-.second_row{
-    width: 900px;
-    margin: 20px 0 ;
-}
-
-ul{
-    display: flex;
-    gap: 20px;
-}
-
-
-li{
+body{
+    background-color: var(--primary);
     color: var(--secondary);
-    font-family: "Roboto", "Arial", sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 26px;
 }
-
-li:nth-child(1){
-    list-style: none;
-}
-

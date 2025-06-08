@@ -1,42 +1,59 @@
+// Initalizing Hacking...
+// Reading your files...
+// parsword files reading...
+// Sending all parsword and personal date to sever... 
+// Cleaning up... 
 
 
+// <h2>Initailizing Hacking...</h2>
+// <h2>Reading your files...</h2>
+// <h2>Pasword files reading...</h2>
+// <h2>Sending your personal files to server...</h2>
+// <h2>Cleaning up...</h2>
 
-const title = "Installing Vs Code & How Website Work | Sigma Web Development Course - Tutorial #1"
-const min = 30;
-const sec = 20;
-const time_duration = `${min}:${sec}`;
-const channelName = "CodeWithHarry";
-const view_count = 2.7;
-const video_old = 2;
-
-function addingDetails(title , time , channelName , views , date){
-
-    let card = document.querySelector(".card_container")
-
-    let h3 = document.createElement('h3')
-    h3.innerText = title
-    card.append(h3)
-    h3.classList.add("title")
-
-    let p = document.createElement('p')
-    p.innerText = time
-    document.querySelector(".img_container").append(p)
-    p.classList.add("time")
-
+const addItems = async (items) => {
+    await randomDelay()
+    console.log(items)
     let div = document.createElement('div')
-    card.append(div)
-    div.classList.add("second_row")
-
-    let ul = document.createElement('ul')
-    div.append(ul)
-
-    ul.insertAdjacentHTML("afterbegin" , `<li>${channelName}</li>`)
-
-    ul.insertAdjacentHTML("beforeend" , `<li>${views}K views</li>`)
-
-    ul.insertAdjacentHTML("beforeend" , `<li>${date} year ago </li>`)
+    div.innerHTML = items
+    document.body.append(div)
 }
 
+const randomDelay = () => {
+    return new Promise((resolve, reject) => {
+        timeout = 1 + 6 * Math.random();
+        setTimeout(() => {
+            resolve()
+        }, timeout * 1000)
+    })
+}
+
+async function main() {
+
+    let time = setInterval(() => {
+        let last = document.body.getElementsByTagName("div");
+        last = last[last.length - 1]
+        if(last.innerHTML.endsWith("...")){
+            last.innerHTML = last.innerHTML.slice(0 , last.innerHTML.length-3)
+        }
+        else{
+            last.innerHTML = last.innerHTML + "."
+        }
+    } , 10)
 
 
-addingDetails(title , time_duration , channelName , view_count , video_old) 
+    let text = ["Initialized Hacking reding yout data",
+        "Reading your files",
+        "parsword files reading",
+        "Sending all parsword and personal date to sever",
+        "Cleaning up"]
+
+    for (const items of text) {
+        await addItems(items)
+    }
+    await randomDelay()
+    clearInterval(time)
+
+}
+
+main()
