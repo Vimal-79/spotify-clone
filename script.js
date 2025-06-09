@@ -1,54 +1,62 @@
-let randomDelay = async () => {
-    return new Promise((resolve, reject) => {
-        let randomNumber = Math.floor(Math.random() * 6 + 1)
-        setTimeout(() => {
-            resolve()
-        }, randomNumber * 1000)
-    })
-}
-
-let addItems = async (items) => {
-    await randomDelay()
-    let container = document.querySelector(".container")
-    let div = document.createElement('div')
-    div.innerText = items
-    container.append(div)
-}
 
 
+const card = `<div class="container">
+        <div class="image_container">
+        </div>
+        <div class="content_container">
 
-async function mainfnc() {
+            <div class="follow_and_message_container">
+                <button class="message">Message</button>
+                <button class="follow">Follow</button>
+            </div>
+            <div class="capsule">
+                <ul>
+                    <li>Likes</li>
+                    <li>Posts</li>
+                    <li>Subscribe</li>
+                </ul>
+            </div>
 
-    let time = setInterval(() => {
-        let container = document.querySelector(".container")
-        if (container.children.length > 0) {
-            let last = container.lastElementChild
-            if (last.innerHTML.endsWith("...")) {
-                last.innerHTML = last.innerHTML.slice(0, last.innerHTML.length - 3)
-            }
-            else {
-                last.innerHTML = last.innerHTML + "."
-            }
+        </div>
+
+    </div>`;
+
+const url = "https://dog.ceo/api/breeds/image/random"
+
+async function getdata() {
+    const api = await fetch(url)
+    try {
+        if (!api.ok) {
+            throw SyntaxError("samasyan aa gai api mai ab kya karna hai jaldi batao")
         }
-
-    }, 100)
-
-
-    let commands = [
-        "Initalizing Hacking in your pc",
-        "Hacking initialized searching for files",
-        "Cracking Password files",
-        "Sending personal files to server",
-        "removing traces of hack",
-        "Cleaning up"
-    ]
-
-    for (items of commands) {
-        await addItems(items)
+        const json = await api.json()
+        console.log(json)
+        await addhtml();
+        await addimage(json)
     }
-
-    await randomDelay()
-    clearInterval(time)
+    catch (error) {
+        console.log("their is some fult in api fatching")
+        console.log(error)
+        await notImage()
+    }
 }
 
-mainfnc()
+async function addhtml(){
+document.body.innerHTML = card 
+}
+async function addimage(json) {
+
+    let image = document.createElement("img")
+    document.querySelector(".image_container").append(image)
+    image.src = json.message
+    image.alt = "image"
+}
+
+async function notImage() {
+    let h2 = document.createElement('h2')
+    document.body.append(h2)
+    h2.innerHTML = "API failed"
+
+}
+
+getdata()

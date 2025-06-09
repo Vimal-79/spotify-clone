@@ -1,12 +1,102 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
-    background-color: #010101ef;
-    color: rgba(10, 177, 10, 0.781);
+.container {
+    margin: 50px auto;
+    padding: 50px 0 20px 0;
+    height: 600px;
+    width: 400px;
+    background-color: rgb(54, 238, 245);
+    border: 2px solid black;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.image_container {
+    height: 150px;
+    width: 150px;
+    border: 3px solid palegreen;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.image_container img {
+    top: 50px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.content_container {
+    height: 465px;
+    width: 100%;
+    border-radius: 40px 40px 0 0;
+    background-color: #F4F8F9;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    padding: 100px 0;
+    box-sizing: border-box;
+}
+
+.follow_and_message_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 0 0 20px 0;
+}
+
+.follow,
+.message {
+    height: 50px;
+    width: 150px;
+    box-sizing: border-box;
     font-size: 26px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.follow {
+    color: #fff;
+    border: 2px solid #235bec;
+    background-color: #235bec;
+}
+
+.message {
+    color: #ffffff;
+    border: 2px solid #666a638c;
+    background-color: #666a638c;
+}
+
+.capsule {
+    margin: 0 30px;
+}
+
+.capsule ul {
+    display: flex;
+    gap: 30px;
+}
+
+.capsule li {
+    list-style-type: none;
+    border: 1px solid rgb(165, 164, 163);
+    padding: 3px 10px 5px 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 12px;
+    color: rgb(165, 164, 163);
 }
