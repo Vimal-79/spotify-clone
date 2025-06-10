@@ -1,102 +1,124 @@
-* {
+*{
     margin: 0;
     padding: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.container {
-    margin: 50px auto;
-    padding: 50px 0 20px 0;
-    height: 600px;
-    width: 400px;
-    background-color: rgb(54, 238, 245);
-    border: 2px solid black;
-    box-sizing: border-box;
-    position: relative;
+:root{
+    --main_backgroun: #6DE1D2;
+    --main_color: #F75A5A;
+    --fonts_color: #F97A00;
+    --fonts_background_color: #F0F2BD;
+}
+
+body{
+    background-color: var(--main_backgroun);
+}
+
+h1{
+    text-align: center;
+    margin: 20px 0;
+    font-size: 56px;
+    color: #FF0000;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 800;
+    text-shadow: 0 0 12p
+}
+
+.container{
+    width: 600px;
+    height: 340px;
+    background-color: var(--main_color);
+    margin: 100px auto;
     border-radius: 40px;
-    overflow: hidden;
-}
-
-.image_container {
-    height: 150px;
-    width: 150px;
-    border: 3px solid palegreen;
-    border-radius: 50%;
-    overflow: hidden;
-    position: absolute;
-    z-index: 2;
-    left: 50%;
-    transform: translateX(-50%)
-}
-
-.image_container img {
-    top: 50px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    user-select: none;
-    -webkit-user-drag: none;
-    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg");
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.content_container {
-    height: 465px;
-    width: 100%;
-    border-radius: 40px 40px 0 0;
-    background-color: #F4F8F9;
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    padding: 100px 0;
     box-sizing: border-box;
+    box-shadow: 10px 15px 20px 2px #4B352A;
 }
 
-.follow_and_message_container {
+.input_area{
+    padding: 40px 50px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+input{
+    height: 50px;
+    width: 100px;
+    font-size: 26px;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: var(--fonts_background_color);
+    color: var(--fonts_color);
+    user-select: none;
+}
+
+input::placeholder{
+    color: var(--fonts_color);
+    font-family: inherit;
+}
+
+.timer_container{
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.timer_container button{
+    height: 70px;
+    width: 100px;
+    border-radius: 20px;
+    border: none;
+    font-size: 42px;
+    letter-spacing: 2px;
+    overflow: hidden;
+    background-color: var(--fonts_background_color);
+    color: var(--fonts_color);
+}
+
+.timer_controls{
+    padding: 20px 0;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 30px;
-    margin: 0 0 20px 0;
+    width: 100%;
 }
 
-.follow,
-.message {
-    height: 50px;
-    width: 150px;
+.timer_controls button{
+    padding: 7px 20px;
+    font-size: 24px;
+    background-color: var(--fonts_background_color);
+    color: var(--fonts_color);
+    border: none;
+    border-radius: 10px;
     box-sizing: border-box;
-    font-size: 26px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 20px;
-    font-weight: 600;
+    transition: all ease-in-out 0.2s;
 }
 
-.follow {
-    color: #fff;
-    border: 2px solid #235bec;
-    background-color: #235bec;
+button.timer_start{
+    background-color: #16610E; 
 }
 
-.message {
-    color: #ffffff;
-    border: 2px solid #666a638c;
-    background-color: #666a638c;
+button.timer_stop{
+    background-color: #FF0000;
 }
 
-.capsule {
-    margin: 0 30px;
+button.timer_reset{
+    background-color: #006769;
 }
 
-.capsule ul {
-    display: flex;
-    gap: 30px;
+button.timer_start:hover{
+    background-color: #0c3d07;
 }
 
-.capsule li {
-    list-style-type: none;
-    border: 1px solid rgb(165, 164, 163);
-    padding: 3px 10px 5px 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 12px;
-    color: rgb(165, 164, 163);
+button.timer_stop:hover{
+    background-color: #760404;
+}
+
+button.timer_reset:hover{
+    background-color: #014647;
 }

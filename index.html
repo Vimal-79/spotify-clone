@@ -9,7 +9,23 @@
 </head>
 
 <body>
-
+    <div class="container">
+        <div class="input_area">
+            <input type="number" id="timer_hour" class="time_input hour_input" placeholder="hour"   >
+            <input type="number" id="timer_minutes" class="time_input minutes_input" placeholder="min" >
+            <input type="number" id="timer_seconds" class="time_input seconds_input" placeholder="sec" >
+        </div>
+        <div class="timer_container">
+            <button class="timer_hour">00</button>
+            <button class="timer_minutes">00</button>
+            <button class="timer_seconds">00</button>
+        </div>
+        <div class="timer_controls">
+            <button class="timer_start">START</button>
+            <button class="timer_stop timer_resume">STOP</button>
+            <button class="timer_reset">RESET</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
