@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solution 4</title>
+    <style>
+        header {
+            display: flex;
+            padding: 20px 20%;
+            justify-content: center;
+            align-items: baseline;
+            gap: 30px
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+
+        p {
+            padding: 20px 20%;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="solution_3.html">solution 3</a>
+        <h1>solution 4</h1>
+        <a href="solution_5.html">solution 5</a>
+    </header>
+    <p>The Password Validator:
+        You are building a password validation feature. Create a function that checks if a given password meets the
+        following
+        criteria: at least 8 characters long, contains both uppercase and lowercase letters, and includes at least one
+        digit.</p>
+    <script>
+
+        function main() {
+
+            let Password = prompt("Enter your password")
+
+            function passwordValidator(password) {
+                if (!Password.search(/\s/)) {
+                    rejectpassword()
+                    return false
+                }
+                if (Password < 8) {
+                    rejectpassword()
+                    return false
+                }
+                if (!/[A-Z]/.test(Password)) {
+                    rejectpassword()
+                    return false
+                }
+                if (!/[a-z]/.test(Password)) {
+                    rejectpassword()
+                    return false
+                }
+                if (!/[0-9]/.test(Password)) {
+                    rejectpassword()
+                    return false
+                }
+                return true
+            }
+
+            function rejectpassword() {
+                alert("Password must stisfy following criteria: \nat least 8 characters long \ncontains both uppercase and lowercase letters \nincludes at least one digit \npassword must not contain any space")
+            }
+
+            let validity_status = (passwordValidator(Password)) ? `Password: ${Password} \nvalid` : "invalid"
+            console.log(validity_status)
+        }
+
+        main()
+
+    </script>
+</body>
+
+</html>
