@@ -4,26 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>solution 3</title>
     <style>
-        header {
-            display: flex;
-            padding: 20px 20%;
-            justify-content: center;
-            align-items: baseline;
-            gap: 30px
-        }
 
-        h1 {
+        span {
+            display: block;
             text-align: center;
-            font-size: 60px;
-            text-decoration: underline;
-            text-transform: uppercase;
         }
 
-        p {
-            padding: 20px 20%;
+        button {
             font-size: 24px;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: teal;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: rgb(1, 90, 90);
+        }
+
+        .Name {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -34,29 +43,43 @@
         <h1>Solution 3</h1>
         <a href="solution_4.html">solution 4</a>
     </header>
+    <p>
+        The Mirror Mirror: <br>
+        Imagine you have a string, and you need to create a new string that is a mirror image of
+        the original.Write a function that appends the reversed version of the original string to itself.
+    </p>
+
+    <span><button>Click to run</button></span>
+    <span class="Name"></span>
+
 
 
     <script>
-        /*The Mirror Mirror:
-Imagine you have a string, and you need to create a new string that is a mirror image of
-the original.Write a function that appends the reversed version of the original string to itself.*/
 
-        let Name = "Vimal Kumar"
-        let charater = ''
-        let reversedName = ''
+        function main() {
+            let userName = prompt("Enter a Name")
+            let Name = userName.trim()
+            let charater = ''
+            let reversedName = ''
 
-        for (let i = Name.length - 1; i >= 0; i--) {
-            charater = Name.charAt(i)
-            reverse(charater, i)
-        }
-
-        function reverse(char, i) {
-            reversedName = reversedName + char;
-            if (i == 0) {
-                console.log(Name)
-                console.log(reversedName)
+            for (let i = Name.length - 1; i >= 0; i--) {
+                charater = Name.charAt(i)
+                reverse(charater, i)
             }
+
+            function reverse(char, i) {
+                reversedName = reversedName + char;
+                if (i == 0) {
+                    console.log(Name)
+                    console.log(reversedName)
+                }
+            }
+            document.querySelector(".Name").innerHTML = `reversed Name: ${reversedName}`
+
         }
+
+
+        document.querySelector("button").addEventListener('click', main)
     </script>
 </body>
 

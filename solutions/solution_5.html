@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>solution 5</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="solution_4.html">solution 4</a>
+        <h1>solution 5</h1>
+        <a href="solution_6.html">solution 6</a>
+    </header>
+    <p>
+        The Sum Selector:<br>
+        You are working on a function that should sum all numbers in an array until it encounters a negative number.
+        Write a function that performs this summation.
+    </p>
+
+    <script>
+
+        const digits = [23, 1, 18, 12, 7, 3, 1, 5, -15, 8, 0, 4, -3, 10, -9, 6]
+
+        function sumUltilNegativeDigitsFound(numbers) {
+            console.log(numbers)
+            let total = 0
+            for (const number of numbers) {
+                if (number < 0) {
+                    console.log(`A Negative number found ${number} at index ${numbers.indexOf(number)}`)
+                    break
+                }
+                total += number
+            }
+            return total
+        }
+
+        let result = sumUltilNegativeDigitsFound(digits)
+        console.log(result)
+
+    </script>
+</body>
+
+</html>
