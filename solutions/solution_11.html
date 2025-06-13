@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>solution 11</title>
+    <style>
+        section {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 30%;
+        }
+
+        span {
+            font-size: 24px;
+        }
+
+        input {
+            margin: 30px 0;
+            height: 50px;
+            width: 300px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            background-color: rgb(210, 206, 206);
+            color: rgb(138, 62, 39);
+            padding: 0 30px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: teal;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            margin: 0 0 30px 0;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: rgb(1, 90, 90);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="solution_10.html">solution 10</a>
+        <h1>Solution 11</h1>
+        <a href="solution_12.html">solution 12</a>
+    </header>
+    <p>The Array Filterer: <br>
+        You are building a search feature for your e-commerce site.
+        Write a function named filterProducts that takes an array of product objects and a filter criterion.
+        The function should return a new array containing only the products that match the filter criterion.
+
+    </p>
+
+    <script>
+
+        const products = [
+            { id: 1, name: 'Laptop', category: 'Electronics', price: 999 },
+            { id: 2, name: 'Phone', category: 'Electronics', price: 499 },
+            { id: 3, name: 'Shoes', category: 'Fashion', price: 89 },
+            { id: 4, name: 'Shirt', category: 'Fashion', price: 29 },
+            { id: 5, name: 'spoon', category: 'Kethen', Price: 10 }
+        ];
+
+        function filterProducts(products, criterion) {
+            return products.filter((product) => {
+                return Object.keys(criterion).every(key => {
+                    return product[key].toLowerCase() === criterion[key].toLowerCase();
+                });
+            });
+        }
+
+        const filterCriterion = {name: 'Shoes'};
+        const filteredProducts = filterProducts(products, filterCriterion);
+
+        console.log(filteredProducts);
+
+    </script>
+</body>
+
+</html>
