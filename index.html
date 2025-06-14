@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utlity.css">
+    <title>Spotify - Web Player: Music for everyone</title>
+</head>
+
+<body>
+    <div class="container flex">
+        <div class="left ">
+            <div class="upper_half_section">
+                <ul>
+                    <li><img src="svgs/logo.svg" alt="Spotify"></li>
+                    <li><img src="svgs/home.svg" alt=""> Home</li>
+                    <li><img src="svgs/search.svg" alt="">search</li>
+                </ul>
+            </div>
+            <div class="lower_half">
+                <div class="library flex align-item">
+                    <img src="svgs/library.svg" alt="">
+                    <h2> Your Library</h2>
+                </div>
+                <div class="songs_list"> </div>
+
+                <div class="footer">
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/">Legal</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/safetyandprivacy/">Safety &amp; Privacy Center</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/">Privacy Policy</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/cookies-policy/">Cookies</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/#s3">About Ads</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/accessibility/">Accessibility</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="right ">
+            <nav class="flex align-item">
+                <div class="arrow_continer flex">
+                    <img src="svgs/left.svg" alt="&lt">
+                    <img src="svgs/right.svg" alt="&gt">
+                </div>
+
+                <div class="buttons flex align-item">
+                    <button class="signup">Sign Up</button>
+                    <button class="login">Log in</button>
+                </div>
+            </nav>
+
+            <div class="spotify_playlist">
+                <h2>Spotify Playlists</h2>
+            </div>
+
+            <div class="cards_container">
+
+            </div>
+
+            <div class="playbar">
+
+                <div class="playbar_details">
+                    <div class="playbar_buttons">
+                        <img src="svgs/previous.svg" id="previous_song_btn" class="previous_song" alt="">
+                        <img src="svgs/play.svg" id="play_song_btn" class="play_song" alt="">
+                        <img src="svgs/next.svg" id="next_song_btn" class="next_song" alt="">
+                    </div>
+                        <div class="song_name"></div>
+
+                        <div class="song_duration"></div>
+                </div>
+                <div class="seekbar">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

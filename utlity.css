@@ -1,0 +1,18 @@
+
+.flex{
+    display: flex;
+}
+
+.align-item{
+    align-items: center;
+}
+
+.justify-content{
+    justify-content: center;
+}
+
+.sort{
+    font-size: 8px;
+    background-color: red;
+}
+
