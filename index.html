@@ -7,6 +7,8 @@
     <link rel="icon" type="image/svg" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utlity.css">
+    <link rel="stylesheet" href="mediaQuery.css">
+    <link rel="stylesheet" href="mediaQuery_for_height.css">
     <title>Spotify - Web Player: Music for everyone</title>
 </head>
 
@@ -14,8 +16,9 @@
     <div class="container flex">
         <div class="left ">
             <div class="upper_half_section">
+                <img src="/svgs/close.svg" class="left_close" alt="">
                 <ul>
-                    <li><img src="svgs/logo.svg" alt="Spotify"></li>
+                    <li><img class="logo" src="svgs/logo.svg" alt="Spotify"></li>
                     <li><img src="svgs/home.svg" alt=""> Home</li>
                     <li><img src="svgs/search.svg" alt="">search</li>
                 </ul>
@@ -53,6 +56,7 @@
         <div class="right ">
             <nav class="flex align-item">
                 <div class="arrow_continer flex">
+                    <img src="svgs/hamburger.svg" class="hamburger" alt="">
                     <img src="svgs/left.svg" alt="&lt">
                     <img src="svgs/right.svg" alt="&gt">
                 </div>
@@ -79,9 +83,11 @@
                         <img src="svgs/play.svg" id="play_song_btn" class="play_song" alt="">
                         <img src="svgs/next.svg" id="next_song_btn" class="next_song" alt="">
                     </div>
+                    <div class="song_name_container">
                         <div class="song_name"></div>
+                    </div>
 
-                        <div class="song_duration"></div>
+                    <div class="song_duration"></div>
                 </div>
                 <div class="seekbar">
                     <div class="circle"></div>
@@ -92,6 +98,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="mediaQuery.js"></script>
 </body>
 
 </html>

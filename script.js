@@ -2,17 +2,18 @@
 //curren audio
 let currentSong = new Audio();
 
-function playCurrentSong(songUrl , paused=false) {
+function playCurrentSong(songUrl, paused = false) {
     currentSong.src = songUrl
 
     setTimeout(() => {
-    if(!paused){
-        currentSong.play()
-        document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
-        document.querySelector("#play_song_btn").classList.add("play_pause_btn")
-    }
-        document.querySelector(".song_name").innerHTML = currentSong.src.split("/songs/")[1].replaceAll("%20", " ").split("-")[0]
-        document.querySelector(".song_duration").innerHTML = `00:00 / 00:00`
+        if (!paused) {
+            currentSong.play()
+            document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
+            document.querySelector("#play_song_btn").classList.add("play_pause_btn")
+        }
+        document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split("/songs/")[1].split(".mp3")[0]
+        document.querySelector(".song_duration").innerHTML = `00:00/00:00`
+
     }, 500)
 }
 
@@ -39,7 +40,7 @@ async function getSongs() {
 
 function secondToMinuteSeconds(second) {
     if (isNaN(second) || second < 0) {
-        return "Invalid input"
+        return "00:00"
     }
 
     const minutes = Math.floor(second / 60)
@@ -54,7 +55,7 @@ function secondToMinuteSeconds(second) {
 async function main() {
     //Getting the songs from songlist
     let songs = await getSongs()
-    playCurrentSong(songs[0] , true)
+    playCurrentSong(songs[0], true)
     let songsConatainer = document.querySelector(".songs_list")
 
     for (const element of songsName) {
@@ -170,9 +171,30 @@ async function main() {
     currentSong.addEventListener('timeupdate', () => {
 
         document.querySelector(".song_duration").innerHTML = `${secondToMinuteSeconds(currentSong.currentTime)}/${secondToMinuteSeconds(currentSong.duration)} `
+        document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+
+        //if current song finished
+        if (currentSong.currentTime == currentSong.duration) {
+            console.log("song finished")
+            document.querySelector("#play_song_btn").src = "/svgs/play.svg"
+            let index = songs.indexOf(currentSong.src)
+            if (index < songs.length - 1) {
+
+                currentSong.src = songs[index + 1]
+                playCurrentSong(currentSong.src)
+            }
+        }
+    })
+
+    //seekbar song controls
+    document.querySelector(".seekbar").addEventListener('click', e => {
+        let value = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+        document.querySelector(".circle").style.left = value + "%";
+        currentSong.currentTime = ((currentSong.duration) * value) / 100;
     })
 
 }
 
 main()
+
 
