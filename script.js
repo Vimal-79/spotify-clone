@@ -11,7 +11,7 @@ function playCurrentSong(songUrl, paused = false) {
             document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
             document.querySelector("#play_song_btn").classList.add("play_pause_btn")
         }
-        document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split("/songs/")[1].split(".mp3")[0]
+        document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split("/songs/")[1].split(".mp3")[0].split("-")[0]
         document.querySelector(".song_duration").innerHTML = `00:00/00:00`
 
     }, 500)
