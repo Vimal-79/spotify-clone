@@ -1,6 +1,5 @@
-
 @media (max-width: 1300px) {
-    .left{
+    .left {
         position: absolute;
         z-index: 1;
         left: -100%;
@@ -9,80 +8,123 @@
         width: 300px;
     }
 
-    .left_close{
+    .left_close {
         display: block;
     }
 
-    .upper_half_section{
+    .upper_half_section {
         height: 200px;
     }
 
-    .lower_half{
+    .lower_half {
         height: calc(100% - 250px);
     }
 
-    .right{
+    .right {
         width: 100%;
     }
 
-    nav .hamburger{
+    nav .hamburger {
         display: block;
         cursor: pointer;
     }
 
-     .hamburger_slide_to_right{
+    .hamburger_slide_to_right {
         margin-left: 280px;
-     }
-    
+    }
+
 }
 
 
-@media (max-width: 1000px){
-    .cards_container{
+
+
+
+
+@media (max-width: 1000px) {
+    .cards_container {
         padding: 10px 20px;
         width: 90%;
     }
 
-    .seekbar{
-        width: 85%;
-    }
 }
 
-@media (max-width: 500px){
 
-    .container{
+
+
+@media (max-width: 500px) {
+
+    .container {
         height: 100vh;
+        padding: 0;
     }
 
-    .left{
+    .left {
+        position: absolute;
+        z-index: 1;
+        left: -100%;
+        height: calc(100%);
+        width: 300px;
+        padding: 0 10px;
+    }
+
+    .lower_half {
+        height: calc(100% - 220px);
+    }
+
+    .right {
         height: 100%;
-        padding: 2px 10px 10px 0;
-        z-index: 2;
     }
 
-    .right{
-        height: 100%;
-    }
-
-    .cards_container{
+    .cards_container {
         padding: 10px;
         width: 88%;
+        height: 70%;
+        flex-flow: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
     }
 
-    .playbar{
-        height: 100px;
+
+    .playbar_buttons {
+        position: unset;
+        transform: translate(0)
     }
 
-    .seekbar{
-        width: 80%;
-        margin-bottom: 30px;
+    .playbar_details {
+        flex-flow: column;
+        align-items: center;
+        gap: 5px;
     }
 
-    /* .song_name_container{
+    .seekbar {
+        width: 85%;
+    }
+
+    .song_name {
+        width: auto;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .song_time_and_volume {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .song_name,
+    .song_duration {
+        line-height: 15px;
         font-size: 15px;
-        width: 60px;
-        height: 30px;
-        overflow:hidden;
-    } */
+    }
+
+    .volume input {
+        width: 100px;
+
+    }
+
 
 }

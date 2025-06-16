@@ -5,7 +5,7 @@ function myFunction(x) {
         // If media query matches
 
         document.querySelector(".hamburger").addEventListener('click', () => {
-            document.querySelector(".left").style.left = 0;
+            document.querySelector(".left").style.left = -10 + "px";
         })
 
         document.querySelector(".left_close").addEventListener('click', () => {

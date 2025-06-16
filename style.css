@@ -43,6 +43,7 @@ img{
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+    overflow-y: hidden;
     position: relative;
 }
 
@@ -291,7 +292,7 @@ nav .buttons {
 
 .card {
     padding: 20px 10px;
-    width: 200px;
+    width: 250px;
     height: max-content;
     background-color: #121212;
     border-radius: 10px;
@@ -313,8 +314,9 @@ nav .buttons {
     background-image: url("https://i.scdn.co/image/ab67616d00001e026fbb60d6a7e03ccb940a518e");
     background-position: center center;
     background-size: contain;
-    width: 200px;
-    height: 200px;
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 250px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -349,46 +351,47 @@ nav .buttons {
 .play_btn_on_image {
     bottom: 10px !important;
     opacity: 1 !important;
-
 }
 
-.playbar {
+.playbar_container{
     width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: baseline;
-    align-items: center;
+    min-height: 70px;
     filter: invert(1);
     position: absolute;
     bottom: 30px;
     user-select: none;
+    display: flex;
+    justify-content: center;
+}
+
+.playbar {
+    width: 95%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 22px;
+    background-color: #d2d2d2;
+    padding: 15px 0;
 }
 
 .playbar_details {
     width: 95%;
-    height: 70px;
-    padding: 10px 40px;
-    border-radius: 22px;
-    margin: 10px 0;
+    padding: 0 40px;
+    min-height: 40px;
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    background-color: #d2d2d2;
+    align-items: center;
     box-sizing: border-box;
     position: relative;
 }
 
 .playbar_buttons{
     position: absolute;
+    top: 10px;
     left: 50%;
     transform: translate(-50%);
 }
-
-.song_name , .song_duration{
-    margin-top: 15px;
-    color: #000;
-}
-
 
 .playbar_details img {
     width: 20px;
@@ -397,12 +400,45 @@ nav .buttons {
 }
 
 .play_pause_btn {
-    height: 30px;
+    height: 32px;
 }
 
 .playbar_details .play_song {
     width: 30px;
 }
+
+.song_name{
+    width: 30%;
+}
+
+.song_name , .song_duration{
+    color: #000;
+}
+
+.song_time_and_volume{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.volume{
+    display: flex;
+    align-items: center;
+}
+
+.volume_img{
+    height: 16px;
+}
+
+.volume input{
+    width: 80px;
+    margin-right: -10px;
+    height: 3px;
+    cursor: pointer;
+}
+
 
 .song_name_container{
     width: 30%;
@@ -411,13 +447,12 @@ nav .buttons {
 }
 
 .seekbar {
-    width: 90%;
+    width: 93%;
     height: 3px;
     background-color: #000;
     border-radius: 12px;
-    margin: 15px 0;
-    position: absolute;
-    bottom: 5px;
+    position: relative;
+    bottom: 0;
     cursor: pointer;
 }
 

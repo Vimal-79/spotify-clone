@@ -1,20 +1,54 @@
 
+
+function volumeImg(){
+        if (currentSong.volume === 0) {
+            document.querySelector(".volume_img").src = "svgs/muted.svg"
+        }
+
+        else if (currentSong.volume > 0 && currentSong.volume < 0.1) {
+            document.querySelector(".volume_img").src = "svgs/volume-off.svg"
+        }
+
+        else if (currentSong.volume > 0.1 && currentSong.volume < 0.5) {
+            document.querySelector(".volume_img").src = "svgs/volume-low.svg"
+        }
+
+        else if (currentSong.volume > 0.5 && currentSong.volume < 1) {
+
+            document.querySelector(".volume_img").src = "svgs/volume-high.svg"
+        }
+
+        else if (currentSong.volume === 1) {
+            document.querySelector(".volume_img").src = "svgs/volume-max.svg"
+        }
+}
+
 //curren audio
 let currentSong = new Audio();
 
+function volume() {
+    if (localStorage.getItem("Volume")) {
+        let volume = localStorage.getItem("Volume")
+        currentSong.volume = volume
+        document.querySelector("#volume").value = volume * 100
+        volumeImg()
+    }
+    else {
+        currentSong.volume = 0
+    }
+}
+
 function playCurrentSong(songUrl, paused = false) {
     currentSong.src = songUrl
+    volume()
+    if (!paused) {
+        currentSong.play()
+        document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
+        document.querySelector("#play_song_btn").classList.add("play_pause_btn")
+    }
+    document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split("/songs/")[1].split(".mp3")[0].split("-")[0]
+    document.querySelector(".song_duration").innerHTML = `00:00 / 00:00`
 
-    setTimeout(() => {
-        if (!paused) {
-            currentSong.play()
-            document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
-            document.querySelector("#play_song_btn").classList.add("play_pause_btn")
-        }
-        document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split("/songs/")[1].split(".mp3")[0].split("-")[0]
-        document.querySelector(".song_duration").innerHTML = `00:00/00:00`
-
-    }, 500)
 }
 
 //gettin value from songs title
@@ -38,17 +72,16 @@ async function getSongs() {
 
 }
 
+// time fomate for songs
 function secondToMinuteSeconds(second) {
     if (isNaN(second) || second < 0) {
         return "00:00"
     }
-
     const minutes = Math.floor(second / 60)
     const remainingSecods = Math.floor(second % 60)
 
     const formatedMinutes = String(minutes).padStart(2, '0');
     const formatedSeconds = String(remainingSecods).padStart(2, '0')
-
     return `${formatedMinutes}:${formatedSeconds}`
 }
 
@@ -159,23 +192,25 @@ async function main() {
 
     //Next song button
     document.querySelector("#next_song_btn").addEventListener('click', () => {
-        if (songs.indexOf(currentSong.src) >= 0 && songs.indexOf(currentSong.src) < songs.length - 1) {
+        if (songs.indexOf(currentSong.src) < songs.length - 1) {
             playCurrentSong(songs[songs.indexOf(currentSong.src) + 1])
-        }
-
-        else if (songs.indexOf(currentSong.src) == songs.length - 1) {
-            playCurrentSong(currentSong.src)
         }
     })
 
     currentSong.addEventListener('timeupdate', () => {
 
-        document.querySelector(".song_duration").innerHTML = `${secondToMinuteSeconds(currentSong.currentTime)}/${secondToMinuteSeconds(currentSong.duration)} `
+        document.querySelector(".song_duration").innerHTML = `${secondToMinuteSeconds(currentSong.currentTime)} / ${secondToMinuteSeconds(currentSong.duration)} `
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+
+        if (currentSong.paused) {
+            document.querySelector("#play_song_btn").src = "/svgs/play.svg"
+        }
+        else {
+            document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
+        }
 
         //if current song finished
         if (currentSong.currentTime == currentSong.duration) {
-            console.log("song finished")
             document.querySelector("#play_song_btn").src = "/svgs/play.svg"
             let index = songs.indexOf(currentSong.src)
             if (index < songs.length - 1) {
@@ -192,6 +227,28 @@ async function main() {
         document.querySelector(".circle").style.left = value + "%";
         currentSong.currentTime = ((currentSong.duration) * value) / 100;
     })
+
+    document.querySelector("#volume").addEventListener('click', vol => {
+        currentSong.volume = vol.target.value / 100;
+
+        localStorage.setItem("Volume", currentSong.volume)
+        volumeImg()
+    })
+
+    //event lisner on image of volume if clicked togle to volumed and muted 
+    document.querySelector(".volume_img").addEventListener('click', () => {
+        if (currentSong.volume == 0) {
+            currentSong.volume = localStorage.getItem("Volume")
+            document.querySelector("#volume").value = localStorage.getItem("Volume") * 100
+        }
+        else {
+            currentSong.volume = 0
+            document.querySelector("#volume").value = 0
+        }
+
+        volumeImg(  )
+    })
+
 
 }
 
