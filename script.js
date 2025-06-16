@@ -1,26 +1,21 @@
 
 
-function volumeImg(){
-        if (currentSong.volume === 0) {
-            document.querySelector(".volume_img").src = "svgs/muted.svg"
-        }
-
-        else if (currentSong.volume > 0 && currentSong.volume < 0.1) {
-            document.querySelector(".volume_img").src = "svgs/volume-off.svg"
-        }
-
-        else if (currentSong.volume > 0.1 && currentSong.volume < 0.5) {
-            document.querySelector(".volume_img").src = "svgs/volume-low.svg"
-        }
-
-        else if (currentSong.volume > 0.5 && currentSong.volume < 1) {
-
-            document.querySelector(".volume_img").src = "svgs/volume-high.svg"
-        }
-
-        else if (currentSong.volume === 1) {
-            document.querySelector(".volume_img").src = "svgs/volume-max.svg"
-        }
+function volumeImg() {
+    if (currentSong.volume === 0) {
+        document.querySelector(".volume_img").src = "svgs/muted.svg"
+    }
+    else if (currentSong.volume > 0 && currentSong.volume < 0.1) {
+        document.querySelector(".volume_img").src = "svgs/volume-off.svg"
+    }
+    else if (currentSong.volume > 0.1 && currentSong.volume < 0.5) {
+        document.querySelector(".volume_img").src = "svgs/volume-low.svg"
+    }
+    else if (currentSong.volume > 0.5 && currentSong.volume < 1) {
+        document.querySelector(".volume_img").src = "svgs/volume-high.svg"
+    }
+    else if (currentSong.volume === 1) {
+        document.querySelector(".volume_img").src = "svgs/volume-max.svg"
+    }
 }
 
 //curren audio
@@ -28,14 +23,14 @@ let currentSong = new Audio();
 
 function volume() {
     if (localStorage.getItem("Volume")) {
-        let volume = localStorage.getItem("Volume")
-        currentSong.volume = volume
-        document.querySelector("#volume").value = volume * 100
-        volumeImg()
+        let vol = localStorage.getItem("Volume")
+        currentSong.volume = vol
+        document.querySelector("#volume").value = vol * 100
     }
     else {
         currentSong.volume = 0
     }
+    volumeImg()
 }
 
 function playCurrentSong(songUrl, paused = false) {
@@ -128,14 +123,14 @@ async function main() {
 
         //Adding sogng card in right section from songsName or we say songs title
         let cardsContainer = document.createElement('div')
-        cardsContainer.innerHTML = `<div class="card">
-                    <div class="img_contianer">
-                    <img src="" alt="">
+        cardsContainer.innerHTML = `<div class="img_container">
+                    <img class="song_cover_img" src="https://i.scdn.co/image/ab67616d00001e026fbb60d6a7e03ccb940a518e">
                     <div class="play">
                     <img src="/svgs/play2.svg" alt=""></div>
-                    </div><h2>${songNewName}</h2><p>${artistName}</p></div>`
+                    </div><h2>${songNewName}</h2><p>${artistName}</p>`
 
         document.querySelector(".cards_container").append(cardsContainer)
+        cardsContainer.classList.add("card")
     }
 
     //Playing song on click from left song tray
@@ -228,9 +223,8 @@ async function main() {
         currentSong.currentTime = ((currentSong.duration) * value) / 100;
     })
 
-    document.querySelector("#volume").addEventListener('click', vol => {
+    document.querySelector("#volume").addEventListener('change', vol => {
         currentSong.volume = vol.target.value / 100;
-
         localStorage.setItem("Volume", currentSong.volume)
         volumeImg()
     })
@@ -246,7 +240,7 @@ async function main() {
             document.querySelector("#volume").value = 0
         }
 
-        volumeImg(  )
+        volumeImg()
     })
 
 

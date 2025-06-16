@@ -223,8 +223,7 @@ nav {
 }
 
 nav .arrow_continer {
-    width: 15px;
-    gap: 10px;
+    width: auto;
 }
 
 nav .hamburger{
@@ -238,6 +237,7 @@ nav .hamburger{
 
 nav img {
     filter: invert(1);
+    width: 34px;
 }
 
 nav .buttons {
@@ -298,28 +298,17 @@ nav .buttons {
     border-radius: 10px;
 }
 
-.card h2 {
-    padding: 10px 0;
-    font-size: 18px;
-    font-weight: 400;
-}
 
-.card p {
-    font-weight: 600;
-    color: grey;
-
-}
-
-.card .img_contianer {
-    background-image: url("https://i.scdn.co/image/ab67616d00001e026fbb60d6a7e03ccb940a518e");
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
+.card .img_container {
     width: 250px;
     height: 250px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+}
+
+.card .img_container .song_cover_img{
+    width: 250px;
 }
 
 .card .play {
@@ -330,7 +319,6 @@ nav .buttons {
     align-items: center;
     background-color: rgb(10, 213, 88);
     position: absolute;
-    z-index: 1;
     bottom: 0;
     right: 10px;
     border-radius: 50%;
@@ -342,6 +330,17 @@ nav .buttons {
 .card .play img {
     width: 20px;
     height: 20px;
+}
+
+.card h2 {
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.card p {
+    font-weight: 600;
+    color: grey;
 }
 
 .cardhoverd{
@@ -394,7 +393,7 @@ nav .buttons {
 }
 
 .playbar_details img {
-    width: 20px;
+    width: 34px;
     margin: 0 5px;
     cursor: pointer;
 }
@@ -429,7 +428,8 @@ nav .buttons {
 }
 
 .volume_img{
-    height: 16px;
+    height: 20px;
+    width: 20px;
 }
 
 .volume input{

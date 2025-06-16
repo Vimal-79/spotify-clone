@@ -1,11 +1,21 @@
+@media (min-width: 1300px) {
+    .song_name {
+        font-size: 22px;
+    }
+}
+
+
+
+
 @media (max-width: 1300px) {
     .left {
         position: absolute;
         z-index: 1;
         left: -100%;
-        margin-left: 10px;
         height: calc(100%);
         width: 300px;
+        padding-right: 10px;
+        border-radius: 0;
     }
 
     .left_close {
@@ -31,6 +41,10 @@
 
     .hamburger_slide_to_right {
         margin-left: 280px;
+    }
+
+    .song_name {
+        font-size: 20px;
     }
 
 }
@@ -61,10 +75,16 @@
     .left {
         position: absolute;
         z-index: 1;
-        left: -100%;
+        left: -10px;
         height: calc(100%);
         width: 300px;
         padding: 0 10px;
+    }
+
+    .upper_half_section,
+    .lower_half {
+        border-radius: 0;
+        background-color: #0f0f0f;
     }
 
     .lower_half {
@@ -73,18 +93,34 @@
 
     .right {
         height: 100%;
+        border-radius: 0;
     }
 
     .cards_container {
         padding: 10px;
-        width: 88%;
-        height: 70%;
+        width: auto;
+        height: 55%;
         flex-flow: column;
         align-items: center;
         gap: 20px;
         padding: 20px;
     }
 
+    .card {
+        width: 100%;
+        padding: 20px 20px;
+        box-sizing: border-box;
+    }
+
+    .card .img_container {
+        width: 100%;
+        height: unset;
+    }
+
+    .card .img_container .song_cover_img {
+        width: 100%;
+        object-fit: cover;
+    }
 
     .playbar_buttons {
         position: unset;
@@ -117,14 +153,16 @@
 
     .song_name,
     .song_duration {
-        line-height: 15px;
-        font-size: 15px;
+        font-size: 16px;
+    }
+
+    .volume img {
+        height: 22px;
+        width: 22px;
     }
 
     .volume input {
         width: 100px;
-
     }
-
 
 }
