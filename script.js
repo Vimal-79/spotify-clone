@@ -38,8 +38,7 @@ function volume() {
 let songs = [];
 let songsName = [];
 let folders = [];
-let currentFolder = "mysongs";
-
+let currentFolder = [];
 
 function playCurrentSong(songUrl, paused = false) {
     currentSong.src = songUrl
@@ -73,6 +72,32 @@ function secondToMinuteSeconds(second) {
 
 // geting songs from server
 
+
+async function displayFolders() {
+    let a = await fetch(`http://127.0.0.1:5500/songs/`);
+    let response = await a.text();
+    let div = document.createElement('div');
+    div.innerHTML = response;
+    for (const element of div.getElementsByTagName("a")) {
+        if (element.href.includes("/songs/")) {
+            let folder = element.href.split("/").slice(-1)[0];
+            folders.push(folder);
+            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
+            let response = await a.json();
+            document.querySelector(".cards_container").innerHTML += `
+                <div data-folder="${folder}" class="card">
+                    <div class="img_container">
+                    <img class="song_cover_img" src="songs/${folder}/cover.jpg" alt="">
+                    <div class="play">
+                        <img src="/svgs/play2.svg" alt="">
+                    </div>
+                </div>
+                <h2>${response.title}</h2>
+                <p>${response.description}</p>
+                </div>`
+        }
+    }
+}
 
 async function getSongs(folder) {
     let a = await fetch(`http://127.0.0.1:5500/songs/${folder}`)
@@ -124,42 +149,15 @@ async function getSongs(folder) {
         })
     })
 
-
-
 }
 
-async function displayFolders() {
-
-    let a = await fetch(`http://127.0.0.1:5500/songs/`);
-    let response = await a.text();
-    let div = document.createElement('div');
-    div.innerHTML = response;
-    for (const element of div.getElementsByTagName("a")) {
-        if (element.href.includes("/songs/")) {
-            let folder = element.href.split("/").slice(-1)[0];
-            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
-            let response = await a.json();
-            document.querySelector(".cards_container").innerHTML += `
-                <div data-folder="${folder}" class="card">
-                    <div class="img_container">
-                    <img class="song_cover_img" src="songs/${folder}/cover.jpg" alt="">
-                    <div class="play">
-                        <img src="/svgs/play2.svg" alt="">
-                    </div>
-                </div>
-                <h2>${response.title}</h2>
-                <p>${response.description}</p>
-                </div>`
-        }
-    }
-
-}
 
 async function main() {
 
+    await displayFolders();
+    currentFolder = folders[0];
     await getSongs(currentFolder);
 
-    await displayFolders();
 
     //Play btn form card arives on mouseover 
     document.querySelectorAll(".card").forEach(element => {
@@ -261,9 +259,9 @@ async function main() {
     document.querySelectorAll(".card").forEach(e => {
         e.addEventListener('click', async item => {
             currentFolder = item.currentTarget.dataset.folder;
-            console.log("moved in", currentFolder);
             document.querySelector(".circle").style.left = "0%";
             await getSongs(currentFolder);
+            currentSong.play()
         })
     })
 
