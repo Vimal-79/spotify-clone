@@ -41,21 +41,45 @@ function playCurrentSong(songUrl, paused = false) {
         document.querySelector("#play_song_btn").src = "/svgs/pause.svg"
         document.querySelector("#play_song_btn").classList.add("play_pause_btn")
     }
-    document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split("/songs/")[1].split(".mp3")[0].split("-")[0]
+    document.querySelector(".song_name").innerHTML = decodeURI(currentSong.src).split(`/${currenFolder}/`)[1].split(".mp3")[0].split("-")[0]
     document.querySelector(".song_duration").innerHTML = `00:00 / 00:00`
 
 }
 
 //gettin value from songs title
 let songsName = [];
+let folders = [];
+let currenFolder = "mysongs";
 
-async function getSongs() {
-    let a = await fetch("http://127.0.0.1:5500/songs/")
+
+// (async function getfolder(){
+//     let f = await fetch(`http://127.0.0.1:5500/songs/`)
+//     let response = await f.text()
+//     console.log(response)
+//     let list = document.createElement('div')
+//     list.innerHTML = response
+//     let li= list.getElementsByTagName('li')
+//     console.log(li)
+//     for (const element of li) {
+//         console.log(element)
+//         if(element.href.search("/songs/") && element.href.endsWith(".mp3")){
+//             console.log(element.href , "folder found")
+//             folders.push(element.href)
+//         }
+//         else{
+//             continue;
+//         }
+//     }
+// })()
+
+async function getSongs(folder) {
+    let a = await fetch(`http://127.0.0.1:5500/songs/${currenFolder}`)
     let response = await a.text()
     let div = document.createElement('div')
     div.innerHTML = response
     let links = div.getElementsByTagName("a")
     let songs = []
+    songsName = []
     for (const element of links) {
         if (element.href.endsWith(".mp3" || ".MP3")) {
             songs.push(element.href)
@@ -93,47 +117,17 @@ async function main() {
         //Adding songs in left section
         songsDetails.innerHTML = `<div class="song_icon"><img src="" alt=""></div>
                         <div class="song_name_and_artist_name">
-                        <h3>${element.split(" - ")[0]}</h3>
-                        <p>${element.split(" - ")[1]}</p>
+                        <h3>${element.split("-")[0]}</h3>
+                        <p>${element.split("-")[1]}</p>
                         </div>
                         <div class="play">
                         <img src="/svgs/play.svg" alt=""></div>`;
         songsConatainer.append(songsDetails)
         songsDetails.classList.add("song")
 
-        //spliting songName and Artist Name from Song title
-        //songNewName is not a big deal it's just song name for cards
-        let songNewName;
-
-        if (songNewName = element.split("-")[0]) {
-            songNewName = songNewName = element.split("-")[0]
-        }
-        else {
-            songNewName = element
-        }
-
-        let artistName;
-
-        if (element.split(" - ")[1]) {
-            artistName = element.split(" - ")[1]
-        }
-        else {
-            artistName = "Artist - Unkwon"
-        }
-
-        //Adding sogng card in right section from songsName or we say songs title
-        let cardsContainer = document.createElement('div')
-        cardsContainer.innerHTML = `<div class="img_container">
-                    <img class="song_cover_img" src="https://i.scdn.co/image/ab67616d00001e026fbb60d6a7e03ccb940a518e">
-                    <div class="play">
-                    <img src="/svgs/play2.svg" alt=""></div>
-                    </div><h2>${songNewName}</h2><p>${artistName}</p>`
-
-        document.querySelector(".cards_container").append(cardsContainer)
-        cardsContainer.classList.add("card")
     }
 
-    //Playing song on click from left song tray
+    //Playing song on click from left song tray in left
     document.querySelectorAll(".song").forEach(element => {
         element.addEventListener('click', () => {
 
